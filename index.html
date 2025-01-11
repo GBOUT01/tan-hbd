@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ma Friend Tanny</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+      font-family: 'Arial', sans-serif;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 4rem;
+      text-align: center;
+      color: white;
+      z-index: 1;
+      transition: opacity 1s;
+    }
+
+    .cake {
+      position: relative;
+      width: 200px;
+      height: 150px;
+      background: #d35400;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 4px 0 #8e44ad;
+      transition: transform 1s;
+    }
+
+    .candle {
+      position: absolute;
+      width: 20px;
+      height: 50px;
+      background: #f1c40f;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 5px;
+    }
+
+    .flame {
+      position: absolute;
+      width: 10px;
+      height: 20px;
+      background: radial-gradient(circle, #f39c12, #e74c3c);
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      animation: flicker 0.5s infinite;
+      display: none;
+    }
+
+    @keyframes flicker {
+      0%, 100% {
+        transform: translateX(-50%) scale(1);
+      }
+      50% {
+        transform: translateX(-50%) scale(1.2);
+      }
+    }
+
+    .friend-picture {
+      display: none;
+      position: absolute;
+      top: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: auto;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transition: opacity 1s, transform 1s;
+    }
+
+    .action-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: white;
+      background-color: #e74c3c;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .action-button:hover {
+      background-color: #c0392b;
+    }
+
+    .hidden {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="birthdayText">Happy BirthdayNa Ma Friend Tanny.</h1>
+  <div class="cake" id="cake">
+    <div class="candle">
+      <div class="flame" id="flame"></div>
+    </div>
+  </div>
+  <button class="action-button" onclick="animateScene()">Click Me!</button>
+  <img src="pic.jpg" alt="Friend's Picture" class="friend-picture" id="friendPicture">
+
+  <script>
+    function animateScene() {
+      const birthdayText = document.getElementById('birthdayText');
+      const friendPicture = document.getElementById('friendPicture');
+      const cake = document.getElementById('cake');
+      const flame = document.getElementById('flame');
+
+      // Fade out the text
+      birthdayText.classList.add('hidden');
+
+      // Show and animate the friend's picture
+      friendPicture.style.display = 'block';
+      setTimeout(() => {
+        friendPicture.style.opacity = '1';
+        friendPicture.style.transform = 'translate(-50%, 20%)';
+
+        // Move the cake under the picture and relight the candle
+        cake.style.transform = 'translateY(150px)';
+        setTimeout(() => {
+          flame.style.display = 'block';
+        }, 1000);
+      }, 500);
+    }
+  </script>
+</body>
+</html>
